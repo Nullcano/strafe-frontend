@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Strafe</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2|PT+Sans&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="bg-dark-100 light-100 strafe-body">
+  <header class="ph3 flex justify-between bg-dark-200 strafe-header">
+    <div class="w-70-l w-50 flex items-center strafe-header-container">
+      <img class="db-l dn mr4 h2" src="img/strafe-logo.png">
+      <img class="db dn-l mr3 h2" src="img/strafe-logo-small.png">
+      <div onclick="switchSidebar()" class="db dn-l w2 h2 br-100 bg-dark-100 flex items-center justify-center pointer sidebar-toggle" style="z-index:99">
+        <i class="f3 blue-300 fa fa-plus"></i>
+      </div>
+      <input type="text" class="input-reset db-l dn w-100 f3 light-100 bg-transparent bn" placeholder="Search channels or keywords..."/>
+    </div>
+    <div class="w-30-l w-50 flex justify-end items-center strafe-header-container">
+      <div id="notif" class="w-auto-l h-auto-l w2 h2 mh2 pv2-l ph3-l flex justify-center items-center br-pill-l br-100 bg-dark-100 light-300 pointer">
+        <i class="mr2-l fa fa-bell red-100"></i>
+        <span class="db-l dn">0</span>
+      </div>
+      <div id="energy" class="w-auto-l h-auto-l w2 h2 mh2 pv2-l ph3-l flex justify-center items-center br-pill-l br-100 bg-dark-100 light-300 pointer">
+        <i class="mr2-l fa fa-bolt blue-100"></i>
+        <span class="db-l dn">100</span>
+      </div>
+      <div id="menu" class="mh2 w2 h2 flex justify-center items-center br-100 bg-dark-100 light-300 pointer">
+        <i class="fa fa-bars light-300"></i>
+      </div>
+    </div>
+  </header>
+  <section class="strafe-wrapper">
+    <section class="pv2 bg-dark-200 flex strafe-sidebar-narrow">
+      <div class="strafe-sidebar-container">
+        <div class="ma2 w2 h2 br-100 ba bw1 b--blue-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+          
+        </div>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-tv"></i>
+        </a>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-stream"></i>
+        </a>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-video"></i>
+        </a>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Live</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Online</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Offline</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="h3">&nbsp;</div>
+      </div>
+    </section>
+    <section class="bg-dark-200 dn strafe-sidebar-wide">
+      <div class="strafe-sidebar-container">
+        <div class="pv2 w-100 flex items-center">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--blue-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Welcome back!</span>
+          </div>
+        </div>
+        <a href="#" class="w-90 mh2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-tv"></i>
+          <span class="light-100">Channel</span>
+        </a>
+        <a href="#" class="w-90 ma2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-stream"></i>
+          <span class="light-100">Dashboard</span>
+        </a>
+        <a href="#" class="w-90 mh2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-video"></i>
+          <span class="light-100">Start Streaming</span>
+        </a>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Live</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Online</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Offline</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="h3">&nbsp;</div>
+      </div>
+    </section>
+    <div onclick="switchSidebar()" class="flex-l dn fixed ma3 left-0 bottom-0 w2 h2 br-100 bg-dark-100 items-center justify-center pointer sidebar-toggle" style="z-index:99">
+      <i id="icon-toggle" class="f3 blue-300 fa fa-plus"></i>
+    </div>
+    <section class="strafe-container-main">
+      <div class="strafe-channel-wrapper">
+        <div class="pa2 strafe-channel-content">
+          <video class="w-100" width="1920" controls autoplay loop>
+            <source src="https://thumbs.gfycat.com/PoliteRegalIsabellineshrike-mobile.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="pa2 w-100 flex flex-column flex-row-l justify-between items-center f5">
+            <div class="w-100 w-80-l pa2 f3-l f4 exo-2 toe">
+              Come watch me playCome watch me playCome watch me playCome watch me playCome watch me play
+            </div>
+            <div class="mv3 mv0-l">
+              <span class="mr2 pv1 ph2 bg-dark-200 br2"><i class="fa fa-heart red-100"></i> 1.2k</span>
+              <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>    
+            </div>
+          </div>
+          <div class="mh2 flex flex-column bg-dark-200">
+            <div class="pa2 w-100 flex flex-column flex-row-l justify-between items-center">
+              <div class="flex items-center">
+                <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                <div class="flex flex-column">
+                  <span class="f4 exo-2">StreamerTV</span>
+                  <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+              <div class="w-100 w-50-l flex flex-row">
+                <button class="w-100 db ma2 pv2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit"><i class="fa fa-heart"></i> Follow</button>
+                <button class="w-100 db ma2 pv2 f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit"><i class="fa fa-bolt"></i> Give Energy</button>
+                <button class="w-100 db ma2 f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit"><i class="fa fa-star"></i> Subscribe</button>
+              </div>
+            </div>
+          </div>
+          <div class="mv2 w-100 flex flex-wrap">
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+            <div class="w-25-l w-50">
+              <div class="ma2 pa3 bg-dark-200">
+                <h3 class="ma0 pv1">StreamerTV</h3>
+                <p class="ma0 pv1">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="bg-dark-200 strafe-chat">
+          <div class="strafe-message-container">
+            <div class="w-100 pv2 flex items-center bb b--dark-100">
+              <div class="ma2 w2 h2 br-100 ba bw1 b--dark-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+              <div class="ml2 flex flex-column">
+                <span class="f5 exo-2">StreamerTV</span>
+                <span class="mt2 f6">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</span>
+              </div>
+            </div>
+          </div>
+          <div class="strafe-message-container">
+            <div class="w-100 pv2 flex items-center bb b--dark-100">
+              <div class="ma2 w2 h2 br-100 ba bw1 b--dark-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+              <div class="ml2 flex flex-column">
+                <span class="f5 exo-2">StreamerTV</span>
+                <span class="mt2 f6">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</span>
+              </div>
+            </div>
+          </div>
+          <div class="strafe-message-container">
+            <div class="w-100 pv2 flex items-center bb b--dark-100">
+              <div class="ma2 w2 h2 br-100 ba bw1 b--dark-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+              <div class="ml2 flex flex-column">
+                <span class="f5 exo-2">StreamerTV</span>
+                <span class="mt2 f6">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</span>
+              </div>
+            </div>
+          </div>
+          <div class="strafe-message-container">
+            <div class="w-100 pv2 flex items-center bb b--dark-100">
+              <div class="ma2 w2 h2 br-100 ba bw1 b--dark-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+              <div class="ml2 flex flex-column">
+                <span class="f5 exo-2">StreamerTV</span>
+                <span class="mt2 f6">Lorem ipsum dolor amet poke la croix squid bitters salvia tousled organic meh direct trade small batch</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+<script src="script.js"></script>
+</body>
+</html>

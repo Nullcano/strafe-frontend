@@ -12,3 +12,7 @@ function switchSidebar() {
     }
   }
 }
+
+function openMenu() {
+  document.querySelector('.strafe-mega-menu').classList.toggle('flex');
+}

@@ -15,6 +15,10 @@ h1, h2, h3, h4, h5 {
   text-overflow: ellipsis;
 }
 
+.aspect-ratio {
+  z-index: 0;
+}
+
 /* scrollbars */
 * {
   scrollbar-color: #1b5a75 transparent;
@@ -125,6 +129,24 @@ h1, h2, h3, h4, h5 {
   height: 4rem;
   display: flex;
   flex-flow: row nowrap;
+}
+
+.strafe-search {
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 2px solid #1b5a75;
+  border-left: 0;
+  transition: ease 200ms;
+}
+
+.strafe-search:focus {
+  background: #1b5a75;
+}
+
+.strafe-mega-menu {
+  margin-top: 4rem;
+  overflow: auto;
+  z-index: 99;
 }
 
 .strafe-sidebar-narrow {

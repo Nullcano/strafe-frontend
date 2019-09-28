@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Strafe</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Exo+2|PT+Sans&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.2/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/css/swiper.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body class="bg-dark-100 light-100 strafe-body">
+  <header class="ph3 flex justify-between bg-dark-200 strafe-header">
+    <div class="w-70-l w-50 flex items-center strafe-header-container">
+      <div class="flex items-center">
+        <a class="w3 w5-l" href="index.html">
+          <img class="db-l dn h2" src="img/strafe-logo.png">
+          <img class="db dn-l h2" src="img/strafe-logo-small.png">    
+        </a>
+      </div>
+      <div onclick="switchSidebar()" class="db dn-l w2 h2 br-100 bg-dark-100 flex items-center justify-center pointer sidebar-toggle" style="z-index:99">
+        <i class="f3 blue-300 fa fa-plus"></i>
+      </div>
+      <input type="text" class="input-reset db-l dn pa3 w-100 f3 light-100 bg-transparent b--blue-300 strafe-search" placeholder="Search channels or keywords..."/>
+    </div>
+    <div class="w-30-l w-50 flex justify-end items-center strafe-header-container">
+      <div id="notif" class="w-auto-l h-auto-l w2 h2 mh2 pv2-l ph3-l flex justify-center items-center br-pill-l br-100 bg-dark-100 light-300 pointer">
+        <i class="mr2-l fa fa-bell red-100"></i>
+        <span class="db-l dn">0</span>
+      </div>
+      <div id="energy" class="w-auto-l h-auto-l w2 h2 mh2 pv2-l ph3-l flex justify-center items-center br-pill-l br-100 bg-dark-100 light-300 pointer">
+        <i class="mr2-l fa fa-bolt blue-100"></i>
+        <span class="db-l dn">100</span>
+      </div>
+      <div onclick="openMenu()" id="menu" class="mh2 w2 h2 flex justify-center items-center br-100 bg-dark-100 light-300 pointer">
+        <i class="fa fa-bars light-300"></i>
+      </div>
+      <div id="openmenu" class="w-100 h-auto pa3 fixed top-0 right-0 dn flex-row-l flex-column f4 bg-blue-300 strafe-mega-menu">
+        <div class="mv2 w-100 w-25-l">
+          <h3 class="ma0 pb3">Account</h3>
+          <ul class="list ma0 pa0">
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">My channel</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">My dashboard</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Start streaming</a></li>
+          </ul>
+        </div>
+        <div class="mv2 w-100 w-25-l">
+          <h3 class="ma0 pb3">Strafe</h3>
+          <ul class="list ma0 pa0">
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">About our platform</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Privacy policy</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Terms of service</a></li>
+          </ul>
+        </div>
+        <div class="mv2 w-100 w-25-l">
+          <h3 class="ma0 pb3">Support</h3>
+          <ul class="list ma0 pa0">
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">FAQ</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Knowledgebase</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Discord channel</a></li>
+          </ul>
+        </div>
+        <div class="mv2 w-100 w-25-l">
+          <h3 class="ma0 pb3">Creative</h3>
+          <ul class="list ma0 pa0">
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Streaming setup</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">API documentation</a></li>
+            <li class="pa2"><a class="link light-100 hover-light-300" href="#">Branding assets</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+  <section class="strafe-wrapper">
+    <section class="pv2 bg-dark-200 flex strafe-sidebar-narrow">
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Log in</h3>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-sign-in-alt"></i>
+        </a>
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Sign up</h3>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-user-plus"></i>
+        </a>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="ma2 w2 h2 br-100 ba bw1 b--blue-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+          
+        </div>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-tv"></i>
+        </a>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-stream"></i>
+        </a>
+        <a href="#" class="ma2">
+          <i class="f4 blue-200 hover-blue-100 fa fa-video"></i>
+        </a>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Live</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Online</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="ma0 pt2 light-300 f6 fw1 ttu">Offline</h3>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+        <div class="ma2 w2 h2 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)">
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="h3">&nbsp;</div>
+      </div>
+    </section>
+    <section class="bg-dark-200 dn strafe-sidebar-wide">
+      <div class="strafe-sidebar-container">
+        <div class="pv3 w-100 flex flex-column items-center">
+          <a href="#" class="w-90 mh2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+            <i class="mh2 fa fa-sign-in-alt"></i>
+            <span class="light-100">Log in</span>
+          </a>
+          <a href="#" class="w-90 ma2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+            <i class="mh2 fa fa-user-plus"></i>
+            <span class="light-100">Sign up</span>
+          </a>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="pv2 w-100 flex items-center">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--blue-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Welcome back!</span>
+          </div>
+        </div>
+        <a href="#" class="w-90 mh2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-tv"></i>
+          <span class="light-100">Channel</span>
+        </a>
+        <a href="#" class="w-90 ma2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-stream"></i>
+          <span class="light-100">Dashboard</span>
+        </a>
+        <a href="#" class="w-90 mh2 pa2 link f4 blue-200 hover-blue-100 bg-dark-100 hover-bg-dark-300 br3">
+          <i class="mh2 fa fa-video"></i>
+          <span class="light-100">Start Streaming</span>
+        </a>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Live</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--red-100 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Playing Overwatch</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Online</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--green bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Watching StreamerTV</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <h3 class="w-100 ma0 pt4 pb2 ph3 light-300 bb bw1 b--dark-100 f4 fw1 ttu">Offline</h3>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+        <div class="w-100 flex items-center bb bw1 b--dark-100">
+          <div class="ma2 w3 h3 br-100 ba bw1 b--dark-300 bg-center cover" style="background:url(img/strafe-avatar-default.png)"></div>
+          <div class="ml2 flex flex-column">
+            <span class="f4 exo-2">StreamerTV</span>
+            <span class="mt2 f5">Offline for 1d 6hr</span>
+          </div>
+        </div>
+      </div>
+      <div class="strafe-sidebar-container">
+        <div class="h3">&nbsp;</div>
+      </div>
+    </section>
+    <div onclick="switchSidebar()" class="flex-l dn fixed ma3 left-0 bottom-0 w2 h2 br-100 bg-dark-100 items-center justify-center pointer sidebar-toggle" style="z-index:99">
+      <i id="icon-toggle" class="f3 blue-300 fa fa-plus"></i>
+    </div>
+    <section class="strafe-container-main">
+      <div class="w-90 w-70-l swiper-outer">
+        <div class="swiper-container gallery-top">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide aspect-ratio aspect-ratio--16x9">
+              <div class="w-100 h-100 flex flex-column justify-between aspect-ratio--object bg-center cover" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+                <div class="pa2 w-100 flex justify-between f3-l f4 exo-2 bg-black-70">
+                  Come watch me play
+                </div>
+                <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                  <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-container gallery-thumbs">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg)">
+              <div class="w-100 flex items-center bg-black-80">
+                <div class="ma1 w3 h3 ba bw1 b--blue-100 br-100 bg-center cover" style="background-image:url(img/strafe-avatar-default.png)"></div>
+                <div class="ml3 flex flex-column items-center">
+                  <span class="f6 f5-ns fw6 lh-title mv0">StreamerTV</span>
+                  <span class="f6 fw4 mt2 mb0"><i class="fa fa-gamepad"></i> Overwatch</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="swiper-button-next swiper-button-white"></div>
+        <div class="swiper-button-prev swiper-button-white"></div>  
+      </div>
+      <div class="pa2 relative bg-black-20">
+        <h3 class="ma0 pa3">Popular channels <a class="ml3 ph3 pv1 link white-80 bg-black-30 20" href="#">More <small class="fa fa-chevron-right"></small></a></h3>
+        <div class="w-100 flex flex-wrap">
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pa2 relative">
+        <h3 class="ma0 pa3">Recommended channels <a class="ml3 ph3 pv1 link white-80 bg-black-30 20" href="#">More <small class="fa fa-chevron-right"></small></a></h3>
+        <div class="w-100 flex flex-wrap">
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="pa2 relative bg-black-20">
+        <h3 class="ma0 pa3">Trending channels <a class="ml3 ph3 pv1 link white-80 bg-black-30 20" href="#">More <small class="fa fa-chevron-right"></small></a></h3>
+        <div class="w-100 flex flex-wrap">
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pa2 w-third-l w-100">
+            <div class="w-100 flex flex-column bg-dark-200">
+              <div class="pa2 w-100 flex flex-row justify-between items-center">
+                <div class="flex items-center">
+                  <div class="w3 h3 mr3 ba bw1 b--blue-100 bg-center cover br-100" style="background-image:url(img/strafe-avatar-default.png"></div>
+                  <div class="flex flex-column">
+                    <span class="f4 exo-2">StreamerTV</span>
+                    <span class="f5 mt2"><i class="fa fa-gamepad"></i> Overwatch</span>
+                  </div>
+                </div>
+                <div class="flex flex-column">
+                  <button class="w-100 db mb2 f6 button-reset bg-dark-100 ba b--red-100 pointer pv1 red-100" type="submit">Follow</button>
+                  <button class="w-100 db f6 button-reset bg-dark-100 ba b--blue-100 pointer pv1 blue-100" type="submit">Subscribe</button>
+                </div>
+              </div>
+              <div class="w-100">
+                <div class="aspect-ratio aspect-ratio--16x9">
+                  <div class="flex flex-column justify-between aspect-ratio--object bg-center cover" style="background:url(https://w.wallhaven.cc/full/gj/wallhaven-gjzoge.jpg) center;">
+                    <div class="pa2 w-100 flex justify-between f4 exo-2 bg-black-70">
+                      Come watch me play
+                    </div>
+                    <div class="w-100 flex justify-between ph2 pt4 pb2 f5 grad-bot">
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-circle red"></i> Live</span>
+                      <span class="pv1 ph2 bg-dark-200 br2"><i class="fa fa-eye"></i> 100</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/4.5.0/js/swiper.min.js"></script>
+<script src="script.js"></script>
+<script>
+  var galleryThumbs = new Swiper('.gallery-thumbs', {
+    spaceBetween: 10,
+    slidesPerView: 4,
+    loop: true,
+    freeMode: true,
+    loopedSlides: 6, //looped slides should be the same
+    watchSlidesVisibility: true,
+  });
+  var galleryTop = new Swiper('.gallery-top', {
+    spaceBetween: 10,
+    loop: true,
+    loopedSlides: 6, //looped slides should be the same
+    autoplay: {
+      delay: 3000,
+      disableOnInteraction: false,
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+    thumbs: {
+      swiper: galleryThumbs,
+    },
+  });
+</script>
+</body>
+</html>
